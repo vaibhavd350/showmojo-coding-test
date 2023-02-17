@@ -5,6 +5,13 @@
 </ul>
 
 <%= form_with model: @transaction do |form| %>
+  <% if @transaction.errors.any? %>
+    <ul>
+    <% @transaction.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  <% end %>
   <%= form.hidden_field :from_currency, value: 'USD' %>
   <%= hidden_field_tag :type, 'large' %>
   <div class="form-group">

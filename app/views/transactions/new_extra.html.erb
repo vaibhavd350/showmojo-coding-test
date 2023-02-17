@@ -5,6 +5,13 @@
 </ul>
 
 <%= form_with model: @transaction do |form| %>
+  <% if @transaction.errors.any? %>
+    <ul>
+    <% @transaction.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  <% end %>
   <%= form.hidden_field :manager_id, value: @manager.id %>
   <%= hidden_field_tag :type, 'extra' %>
   <div class="form-group">
