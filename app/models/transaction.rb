@@ -15,11 +15,7 @@ class Transaction < ApplicationRecord
 
   before_create :generate_uid
   before_validation :convert
-
-  def client_full_name
-    "#{first_name} #{last_name}"
-  end
-
+  
   def large?
     from_amount_in_usd > Money.from_amount(100)
   end

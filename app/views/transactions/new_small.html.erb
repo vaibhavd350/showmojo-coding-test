@@ -3,8 +3,14 @@
   <li><%= link_to "Create 100-1000 USD Transaction", new_transaction_path(type: 'large') %></li>
   <li><%= link_to "Create >1000 USD Transaction", new_transaction_path(type: 'extra') %></li>
 </ul>
-
 <%= form_with model: @transaction do |form| %>
+  <% if @transaction.errors.any? %>
+    <ul>
+    <% @transaction.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  <% end %>
   <%= form.hidden_field :from_currency, value: 'USD' %>
   <%= hidden_field_tag :type, 'small' %>
   <div class="form-group">
